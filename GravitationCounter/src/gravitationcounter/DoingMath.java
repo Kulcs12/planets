@@ -7,18 +7,26 @@ import java.util.ArrayList;
  * @author Bence
  */
 public class DoingMath {
-    public double mu;
-    public double mass1;
-    public double mass2;
-    public static double gravConst = 6.7 * Math.pow(10,-11);
-    public double gravFCube;
+    private double mu;
+    private double mass1;
+    private double mass2;
+    final double gravConst = 6.7 * Math.pow(10,-11);
+    private double gravFCube;
+    private double gravFSize;
     
-    
-    ArrayList<Double> rvec = new ArrayList();
-    ArrayList<Double> r1vec = new ArrayList();
-    ArrayList<Double> r2vec = new ArrayList();
+    private ArrayList<Double> r1vec = new ArrayList();
+    private ArrayList<Double> r2vec = new ArrayList();
     ArrayList<Double> gravF = new ArrayList();
+    ArrayList<Double> rvec = new ArrayList();
+
+    public DoingMath(double mass1, ArrayList<Double> r1vec, double mass2, ArrayList<Double> r2vec) {
+        this.mass1 = mass1;
+        this.mass2 = mass2;
+        this.r1vec = r1vec;
+        this.r2vec = r2vec;
+    }
     
+        
     /**
      * calculate mu
      * @return 
@@ -60,6 +68,7 @@ public class DoingMath {
      * @return 
      */
     public ArrayList calcGravForce(){
+        rvec.forEach(s -> gravFSize += s*s);
         rvec.forEach(s -> gravFCube += s*s*s);
         for(int i = 0; i < rvec.size(); i++)
             gravF.add(-mu / gravFCube * rvec.get(i));
@@ -67,65 +76,19 @@ public class DoingMath {
         return gravF;
     }
 
-    public ArrayList<Double> getRvec() {
-        return rvec;
+    public double getMu() {
+        return mu;
     }
 
-    public void setRvec(ArrayList<Double> rvec) {
-        this.rvec = rvec;
-    }
-
-    public ArrayList<Double> getR1vec() {
-        return r1vec;
-    }
-
-    public void setR1vec(ArrayList<Double> r1vec) {
-        this.r1vec = r1vec;
-    }
-
-    public ArrayList<Double> getR2vec() {
-        return r2vec;
-    }
-
-    public void setR2vec(ArrayList<Double> r2vec) {
-        this.r2vec = r2vec;
-    }
-
-    public ArrayList<Double> getGravF() {
-        return gravF;
-    }
-
-    public void setGravF(ArrayList<Double> gravF) {
-        this.gravF = gravF;
-    }
-
-    public double getMass1() {
-        return mass1;
-    }
-
-    public void setMass1(double mass1) {
-        this.mass1 = mass1;
-    }
-
-    public double getMass2() {
-        return mass2;
-    }
-
-    public void setMass2(double mass2) {
-        this.mass2 = mass2;
-    }
-
-    public double getGravFSize() {
+    public double getGravFCube() {
         return gravFCube;
     }
 
-    public void setGravFSize(double gravFSize) {
-        this.gravFCube = gravFSize;
+    public double getGravFSize() {
+        return gravFSize;
     }
     
-    
-            
-            
+                
 }
 
 
