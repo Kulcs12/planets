@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Bence
  */
 public class GravitationCounter {
-
+    public static double size = 0.0;
     
     
     
@@ -16,6 +16,8 @@ public class GravitationCounter {
         ArrayList<Double> r1vec = new ArrayList();
         ArrayList<Double> r2vec = new ArrayList();
         
+       
+        
         r1vec.add(1.0);
         r1vec.add(0.0);
         r1vec.add(3.0);
@@ -23,8 +25,6 @@ public class GravitationCounter {
         r2vec.add(0.0);
         r2vec.add(1.0);
         
-        System.out.println(r1vec);
-        System.out.println(r2vec);
         
         if(r1vec.size() > r2vec.size()){
             int diff = r1vec.size() - r2vec.size();
@@ -40,9 +40,9 @@ public class GravitationCounter {
                 r1vec.add(0.0);
         }
         
-        System.out.println("számolás után: ");
-        System.out.println(r1vec);
-        System.out.println(r2vec);
+        r1vec.forEach(s -> size += s*s*s);
+        
+        System.out.println(size);
         
         
         

@@ -3,7 +3,7 @@ package gravitationcounter;
 import java.util.ArrayList;
 
 /**
- *
+ *  This class does all the math to calculate gravitational force between two objects
  * @author Bence
  */
 public class DoingMath {
@@ -11,6 +11,7 @@ public class DoingMath {
     public double mass1;
     public double mass2;
     public static double gravConst = 6.7 * Math.pow(10,-11);
+    public double gravFCube;
     
     
     ArrayList<Double> rvec = new ArrayList();
@@ -18,14 +19,21 @@ public class DoingMath {
     ArrayList<Double> r2vec = new ArrayList();
     ArrayList<Double> gravF = new ArrayList();
     
-    
-    public double countMu(){
+    /**
+     * calculate mu
+     * @return 
+     */
+    public double calcMu(){
         mu = gravConst * (mass1 + mass2);
         
         return mu;
 }
     
-    public ArrayList countDist(){
+    /**
+     * calculate distance vector between the two objects
+     * @return 
+     */
+    public ArrayList calcDist(){
         if(r1vec.size() > r2vec.size()){
             int diff = r1vec.size() - r2vec.size();
             
@@ -45,6 +53,18 @@ public class DoingMath {
         
         
         return rvec;
+    }
+    
+    /**
+     * calculate the gravitational force between two objects
+     * @return 
+     */
+    public ArrayList calcGravForce(){
+        rvec.forEach(s -> gravFCube += s*s*s);
+        for(int i = 0; i < rvec.size(); i++)
+            gravF.add(-mu / gravFCube * rvec.get(i));
+                
+        return gravF;
     }
 
     public ArrayList<Double> getRvec() {
@@ -93,6 +113,14 @@ public class DoingMath {
 
     public void setMass2(double mass2) {
         this.mass2 = mass2;
+    }
+
+    public double getGravFSize() {
+        return gravFCube;
+    }
+
+    public void setGravFSize(double gravFSize) {
+        this.gravFCube = gravFSize;
     }
     
     
