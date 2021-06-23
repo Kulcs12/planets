@@ -1,48 +1,48 @@
 package gravitationcounter;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author Bence
  */
 public class GravitationCounter {
-    public static double size = 0.0;
     
     
     
     public static void main(String[] args) {
-        ArrayList<Double> rvec = new ArrayList();
+        
         ArrayList<Double> r1vec = new ArrayList();
         ArrayList<Double> r2vec = new ArrayList();
         
-       
+        System.out.println("Adja meg az első objektum tömegét: ");
+        Scanner in = new Scanner(System.in);
+        double mass1 = in.nextDouble();
         
-        r1vec.add(1.0);
-        r1vec.add(0.0);
-        r1vec.add(3.0);
+        System.out.println("Adja meg az első objektum dimenzióját: ");
+        int dim = in.nextInt();
         
-        r2vec.add(0.0);
-        r2vec.add(1.0);
+        System.out.println("Adja meg az első objektum koordinátáit: ");
+        for(int i = 0; i < dim; i++)
+            r1vec.add(in.nextDouble());
         
+        System.out.println("Adja meg a második objektum tömegét: ");
+        double mass2 = in.nextDouble();
         
-        if(r1vec.size() > r2vec.size()){
-            int diff = r1vec.size() - r2vec.size();
-            
-            for(int i = 0; i < diff; i++)
-                r2vec.add(0.0);
-        }
+        System.out.println("Adja meg a második objektum dimenzióját: ");
+        int dim2 = in.nextInt();
         
-        if(r2vec.size() > r1vec.size()){
-            int diff = r2vec.size() - r1vec.size();
-            
-            for(int i = 0; i < diff; i++)
-                r1vec.add(0.0);
-        }
+        System.out.println("Adja meg a második objektum koordinátáit: ");
+        for(int i = 0; i < dim2; i++)
+            r2vec.add(in.nextDouble());
         
-        r1vec.forEach(s -> size += s*s*s);
+        in.close();
         
-        System.out.println(size);
+        System.out.println("A megadott tömeg: " + mass1 + ", " + mass2);
+        System.out.println("A megadott helykoordináták; " + r1vec);
+        System.out.println("A megadott második helykoordináták; " + r2vec);
+        
         
         
         
