@@ -11,7 +11,8 @@ public class DoingMath {
     private double mass1;
     private double mass2;
     final double gravConst = 6.7 * Math.pow(10,-11);
-    private double gravFCube;
+    private double rvecCube;
+    private double rvecSize;
     private double gravFSize;
     
     private ArrayList<Double> r1vec = new ArrayList();
@@ -76,10 +77,10 @@ public class DoingMath {
      * @return 
      */
     public ArrayList calcGravForce(){
-        rvec.forEach(s -> gravFSize += s*s);
-        rvec.forEach(s -> gravFCube += s*s*s);
+        rvec.forEach(s -> rvecSize += s*s);
+        rvec.forEach(s -> rvecCube += s*s*s);
         for(int i = 0; i < rvec.size(); i++)
-            gravF.add(-mu / gravFCube * rvec.get(i));
+            gravF.add(-mu / rvecCube * rvec.get(i));
                 
         return gravF;
     }
@@ -88,12 +89,12 @@ public class DoingMath {
         return mu;
     }
 
-    public double getGravFCube() {
-        return gravFCube;
+    public double getrvecCube() {
+        return rvecCube;
     }
 
-    public double getGravFSize() {
-        return gravFSize;
+    public double getrvecSize() {
+        return rvecSize;
     }
     
                 
