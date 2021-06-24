@@ -81,8 +81,21 @@ public class DoingMath {
         rvec.forEach(s -> rvecCube += s*s*s);
         for(int i = 0; i < rvec.size(); i++)
             gravF.add(-mu / rvecCube * rvec.get(i));
-                
+        
+        
         return gravF;
+    }
+    
+    public double calcGravForce(boolean size){
+        gravF.forEach(s -> gravFSize += s*s);
+        
+        if(size)
+            return gravFSize;
+        
+        else{
+            this.calcGravForce();
+            return 0.0;
+        }
     }
 
     public double getMu() {
