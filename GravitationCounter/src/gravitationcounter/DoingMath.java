@@ -26,6 +26,14 @@ public class DoingMath {
         this.r2vec = r2vec;
     }
     
+    public DoingMath(CelestialObj planet1, CelestialObj planet2) {
+        this.mass1 = planet1.getMass();
+        this.mass2 = planet2.getMass();
+        this.r1vec = planet1.getRvec();
+        this.r2vec = planet2.getRvec();
+        
+    }
+    
         
     /**
      * calculate mu
